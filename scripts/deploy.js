@@ -8,7 +8,10 @@ async function main() {
    await CrytoDev.deployed()
    console.log(`The contract has been deployed`)
    console.log(`  The contract address: ${CrytoDev.address}`)
+   return CrytoDev
 }
+
+
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
@@ -18,3 +21,8 @@ main().then(()=>{
   console.error(error);
   process.exit(1)
 });
+
+
+module.exports={
+  main
+}
