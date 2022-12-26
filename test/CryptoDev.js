@@ -37,4 +37,9 @@ describe("CrtptoDev", () => {
     assert.equal(contractTokenPerNFT.toString(), tokensPerNFT.toString())
     assert.equal(maxTotalSupply.toString(),maxTotalSupplyFromContract)
   })
+
+  it("set the initail state of the mapping",async()=>{
+        const tokenPrice = await CryptoDev.tokenIdsClaimed("0")
+        assert.equal(tokenPrice,false)
+  })
 })
