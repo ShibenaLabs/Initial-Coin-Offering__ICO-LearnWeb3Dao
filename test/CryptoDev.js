@@ -1,5 +1,5 @@
 const { ethers } = require("hardhat")
-const { BigNumber,utils } = ethers
+const { BigNumber,utils,Contract } = ethers
 const { main } = require("../scripts/deploy")
 const { assert, expect } = require("chai")
 describe("CrtptoDev", () => {
