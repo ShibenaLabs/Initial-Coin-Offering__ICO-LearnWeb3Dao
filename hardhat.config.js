@@ -46,7 +46,7 @@ module.exports = {
         
     },
     etherscan: {
-        apiKey: ETHERSCAN_API_KEY,
+        apiKey:POLYGON_API_KEY,
     },
     gasReporter: {
         enabled: true,
