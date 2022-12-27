@@ -53,4 +53,16 @@ describe("CrtptoDev", () => {
   it("reverts if the totalsupply is greater than max supply of the token",async()=>{
       await expect(CryptoDev.mint(100000,{value:correctPrice})).to.be.revertedWith( "Exceeds the max total supply available.")
   })
+
+  it("ensures the mint function is working properly",async()=>{
+        const mint = await CryptoDev.mint(10,{value:correctPrice})
+        const totalSupply = await CryptoDev.totalSupply()
+        const balance = await CryptoDev.balanceOf(deployer.address)
+        assert.equal(totalSupply.toString(),BigNumber.from("10").pow("19").toString())
+        assert.equal(balance.toString(),BigNumber.from("10").pow("19").toString())
+  })
+
+  it("ensures the mint function emit an event when a minting action is done",async()=>{
+       await expect(CryptoDev.mint(10,{value:correctPrice})).to.emit(CryptoDev,"Transfer")
+  })
 })
