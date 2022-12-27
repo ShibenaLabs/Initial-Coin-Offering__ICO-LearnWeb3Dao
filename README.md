@@ -40,7 +40,7 @@ contract
  - The maxTotalSupply of the CryptoDev's Token is
   >```10000 * 10**18 === 10000 x (10^18)```
 
-  <div style="margin-top:30px"></div>
+  <div style="margin-top:40px"></div>
 
 ## 👩‍💻 __COMMANDS TO USE__
 
