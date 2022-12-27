@@ -14,13 +14,14 @@ describe("CrtptoDev", () => {
     number,
     maxValue,
     fakeprice,
-    correctPrice
+    correctPrice,addressZero
   beforeEach(async () => {
     tokenContractPrice = ethers.utils.parseEther("0.001")
     maxValue = BigNumber.from("10").pow("18")
     maxTotalSupplyFromContract = BigNumber.from("10000").mul(maxValue).toString()
     tokensPerNFT = BigNumber.from("10").pow("19")
     price = utils.parseEther("0.001")
+    addressZero = "0x0000000000000000000000000000000000000000"
     correctPrice = utils.parseEther("100")
     CryptoDev = await main()
     ;[deployer, user1, user2, user3] = await ethers.getSigners()
@@ -64,5 +65,13 @@ describe("CrtptoDev", () => {
 
   it("ensures the mint function emit an event when a minting action is done",async()=>{
        await expect(CryptoDev.mint(10,{value:correctPrice})).to.emit(CryptoDev,"Transfer")
+  })
+  it('ensures the parameter emitted are correct',async()=>{
+       const mint = await CryptoDev.mint(10,{value:correctPrice})
+       const txReceipt = await mint.wait()
+       const {from ,to, value} = txReceipt.events[0].args
+       assert.equal(from,addressZero)
+       assert.equal(to,deployer.address)
+       assert.equal(value.toString(),BigNumber.from("10").pow("19").toString())
   })
 })
