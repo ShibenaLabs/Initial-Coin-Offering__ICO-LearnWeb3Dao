@@ -74,6 +74,7 @@ describe("CrtptoDev", () => {
        assert.equal(to,deployer.address)
        assert.equal(value.toString(),BigNumber.from("10").pow("19").toString())
   })
+
   it("ensures the transfer function allow transfer",async()=>{
     const mint = await CryptoDev.mint(10,{value:correctPrice})
     const transfer = await CryptoDev.transfer(user1.address,BigNumber.from("10").pow("19").toString())
@@ -82,6 +83,7 @@ describe("CrtptoDev", () => {
     assert.equal(balanceOfDeployer.toString(),"0")
     assert.equal(balanceOfUser1.toString(),BigNumber.from("10").pow("19").toString())
   })
+  
   it("ensures the money approve is the correct one",async()=>{
     const mint = await CryptoDev.mint(10,{value:correctPrice})
     const approve = await CryptoDev.approve(user1.address,BigNumber.from("5").mul("10").pow("18"))
